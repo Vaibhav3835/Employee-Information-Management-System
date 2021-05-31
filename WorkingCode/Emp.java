@@ -11,12 +11,12 @@ import javax.swing.text.DefaultCaret;
 //import javax.swing.text.DefaultCaret;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import Gui.LGUI;
+import Gui.Log;
 import net.sourceforge.jdatepicker.impl.JDatePanelImpl;
 import net.sourceforge.jdatepicker.impl.JDatePickerImpl;
 import net.sourceforge.jdatepicker.impl.UtilDateModel;
 @SuppressWarnings("unused")
-public class EmployeePage1 {
+public class Emp {
 	 public static void createEmpFrame(String uname,String upass)
 	   {   
 	       EventQueue.invokeLater(new Runnable()
@@ -26,10 +26,11 @@ public class EmployeePage1 {
 	           {
 	        	   //frame
 	        	   JFrame fr=new JFrame("Home EIMS");
-	        	   fr.setSize(1990,890);
+	        	   fr.setBounds(-10, 0, 1385, 735);
 	        	   fr.setLayout(null);
 	               fr.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	        	   fr.setVisible(true);
+	        	   fr.setResizable(false);
 	        	 
 	        	   
 	        	   // font 
@@ -55,7 +56,7 @@ public class EmployeePage1 {
 	        	   name.setLayout(null);
 	        	   name.setBounds(20,2,400,40);
 	        	     heading.add(name);
-	        	     name.setFont(f);
+	        	     name.setFont(new Font("Serif",Font.BOLD,25));
 	        	     name.setForeground(Color.WHITE);
 	        	     background.add(heading);
 	        	   
@@ -63,8 +64,8 @@ public class EmployeePage1 {
 	        	  JPanel leftPanel=new JPanel();
 	        	  leftPanel.setLayout(null);
 	        	  leftPanel.setBackground(Color.WHITE);
-	        	  leftPanel.setBorder(new BevelBorder(BevelBorder.RAISED)); 
-	        	  leftPanel.setBounds(0,70, 230, 830);
+	        	  leftPanel.setBorder(new BevelBorder(BevelBorder.RAISED));
+	        	  leftPanel.setBounds(0, 50, 200, 655);
 	        	  background.add(leftPanel);
 	        	 
 //	        	     // left side panel image of employee_logo.
@@ -81,7 +82,7 @@ public class EmployeePage1 {
 	        	  
 	        	  JPanel homepanel = new JPanel();
 				  homepanel.setLayout(null);
-				  homepanel.setBounds(250,80,1260,710);
+				  homepanel.setBounds(200,60,1260,635);
 				  homepanel.setBackground(Color.WHITE);
 				  background.add(homepanel);
 				  homepanel.setVisible(true);
@@ -89,42 +90,42 @@ public class EmployeePage1 {
 				  
 	        	  JPanel propanel = new JPanel();
 	        	  propanel.setLayout(null);
-				  propanel.setBounds(400,140,950,600);
+				  propanel.setBounds(300,70,970,620);
 				  propanel.setBackground(Color.WHITE);
 				  background.add(propanel);  
 				  propanel.setVisible(false);
 				  
 				  JPanel feedpanel = new JPanel();
 	        	  feedpanel.setLayout(null);
-				  feedpanel.setBounds(380,140,970,620);
+				  feedpanel.setBounds(300,70,970,620);
 				  feedpanel.setBackground(Color.WHITE);
 				  background.add(feedpanel);
 				  feedpanel.setVisible(false);
 				  
 				  JPanel ratingpanel = new JPanel();
 	        	  ratingpanel.setLayout(null);
-				  ratingpanel.setBounds(380,140,970,620);
+				  ratingpanel.setBounds(300,70,970,620);
 				  ratingpanel.setBackground(Color.WHITE);
 				  background.add(ratingpanel);
 				  ratingpanel.setVisible(false);
 				  
 				  JPanel projectpanel = new JPanel();
 				  projectpanel.setLayout(null);
-				  projectpanel.setBounds(380,140,970,620);
+				  projectpanel.setBounds(300,70,970,620);
 				  projectpanel.setBackground(Color.WHITE);
 				  background.add(projectpanel);
 				  projectpanel.setVisible(false);
 				  
 				  JPanel leavepanel = new JPanel();
 				  leavepanel.setLayout(null);
-				  leavepanel.setBounds(250,80,1260,710);
+				  leavepanel.setBounds(200,60,1260,635);
 				  leavepanel.setBackground(Color.WHITE);
 				  background.add(leavepanel);
 				  leavepanel.setVisible(false);
 				  
 				  JPanel payrollpanel = new JPanel();
 				  payrollpanel.setLayout(null);
-				  payrollpanel.setBounds(380,140,970,620);
+				  payrollpanel.setBounds(300,70,970,620);
 				  payrollpanel.setBackground(Color.WHITE);
 				  background.add(payrollpanel);
 				  payrollpanel.setVisible(false);
@@ -134,7 +135,7 @@ public class EmployeePage1 {
 //	        	***************************************************  // button of the left panel****************************************
 	        	    JButton homebtn= new JButton("Home");
         	        homebtn.setFont(f1);
-        	       homebtn.setBounds(5,140,225,50);
+        	       homebtn.setBounds(0,140,200,50);
         	       homebtn.setBackground(Color.WHITE);
         	       homebtn.setBorder(new BevelBorder(BevelBorder.RAISED));
         	       homebtn.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
@@ -187,7 +188,7 @@ public class EmployeePage1 {
         	       JButton paybtn= new JButton("Payroll");
        	        leftPanel.add(paybtn);
        	        paybtn.setFont(f1);
-       	       paybtn.setBounds(5,190,225,50);
+       	       paybtn.setBounds(0,190,200,50);
        	       paybtn.setBorder(new MatteBorder(0,0,8,0,Color.pink));
        	       paybtn.setBackground(Color.WHITE);
        	       paybtn.setBorder(new BevelBorder(BevelBorder.RAISED));
@@ -432,7 +433,7 @@ public class EmployeePage1 {
 	       
    			//leave
    			JButton leave=new JButton("Leave");
-   			leave.setBounds(5,240,225,50);
+   			leave.setBounds(0,240,200,50);
    			leave.setBackground(Color.WHITE);
    			leave.setFont(f1);
    			leave.setBorder(new BevelBorder(BevelBorder.RAISED));
@@ -562,7 +563,7 @@ public class EmployeePage1 {
    			lmodel.addColumn("Reason");
    			lmodel.addColumn("Request");
    			JScrollPane lpg=new JScrollPane(ljt);
-   			lpg.setBounds(650,120,600,450);
+   			lpg.setBounds(610,120,500,410);
    			lpg.setBorder(new MatteBorder(2,2,2,2,new Color(115,115,165)));
    			
    			JButton lsubmit=new JButton("Submit");
@@ -738,7 +739,7 @@ public class EmployeePage1 {
 	       JButton probtn= new JButton("Profile");
 	        leftPanel.add(probtn);
 	        probtn.setFont(f1);
-	       probtn.setBounds(5,290,225,50);
+	       probtn.setBounds(0,290,200,50);
 	       probtn.setBorder(new MatteBorder(0,0,8,0,Color.pink));
 	       probtn.setBackground(Color.WHITE);
 	       probtn.setBorder(new BevelBorder(BevelBorder.RAISED));
@@ -919,9 +920,8 @@ public class EmployeePage1 {
 		     // text field fd12 
 		     JLabel fd12 = new JLabel();
 		     propanel.add(fd12);
-		     fd12.setBounds(570,280,300,30);
+		     fd12.setBounds(570,280,300,35);
 		     fd12.setBackground(Color.WHITE);
-		     fd12.setHorizontalAlignment(JLabel.CENTER);
 		     fd12.setForeground(new Color(0, 204, 204));
 		     fd12.setFont(f3);
 		     
@@ -976,9 +976,9 @@ public class EmployeePage1 {
 			});
 	       
 	       JButton projectbtn= new JButton("Current Project");
-	        leftPanel.add(projectbtn);
-	        projectbtn.setFont(f1);
-	       projectbtn.setBounds(5,340,225,50);
+	       leftPanel.add(projectbtn);
+	       projectbtn.setFont(f1);
+	       projectbtn.setBounds(0,340,200,50);
 	       projectbtn.setBorder(new MatteBorder(0,0,8,0,Color.pink));
 	       projectbtn.setBackground(Color.WHITE);
 	       projectbtn.setBorder(new BevelBorder(BevelBorder.RAISED));
@@ -1005,6 +1005,7 @@ public class EmployeePage1 {
 	        model3.addColumn("PMemberID");
 	        model3.addColumn("PMember");
 	        model3.addColumn("PDescription");
+	        jtbl.setEnabled(false);
 	        JScrollPane sp = new JScrollPane(jtbl);
 	        sp.setBounds(40, 140, 900, 400);
 	        projectpanel.add(sp);
@@ -1061,7 +1062,7 @@ public class EmployeePage1 {
 	       JButton feedbtn= new JButton("Feedback");
 	        leftPanel.add(feedbtn);
 	        feedbtn.setFont(f1);
-	       feedbtn.setBounds(5,390,225,50);
+	       feedbtn.setBounds(0,390,200,50);
 	       feedbtn.setBorder(new MatteBorder(0,0,8,0,Color.pink));
 	       feedbtn.setBackground(Color.WHITE);
 	       feedbtn.setBorder(new BevelBorder(BevelBorder.RAISED));
@@ -1331,7 +1332,7 @@ public class EmployeePage1 {
 	       JButton ratebtn= new JButton("Rating");
 	        leftPanel.add(ratebtn);
 	        ratebtn.setFont(f1);
-	       ratebtn.setBounds(5,440,225,50);
+	       ratebtn.setBounds(0,440,200,50);
 	       ratebtn.setBorder(new MatteBorder(0,0,8,0,Color.pink));
 	       ratebtn.setBackground(Color.WHITE);
 	       ratebtn.setBorder(new BevelBorder(BevelBorder.RAISED));
@@ -1489,7 +1490,7 @@ public class EmployeePage1 {
 	       JButton outbtn= new JButton("Log Out");
 	        leftPanel.add(outbtn);
 	        outbtn.setFont(f1);
-	       outbtn.setBounds(5,660,225,50);
+	       outbtn.setBounds(0,570,200,50);
 	       outbtn.setBorder(new MatteBorder(0,0,8,0,Color.pink));
 	       outbtn.setBackground(new Color(0, 204, 204));
 	       outbtn.setForeground(Color.white);
@@ -1498,7 +1499,7 @@ public class EmployeePage1 {
 	       outbtn.addActionListener(new ActionListener(){
 	    	   public void actionPerformed(ActionEvent arg0)
 	    	   {  fr.setVisible(false);
-	    		   new LGUI();
+	    		   new Log();
 	    		   JOptionPane.showMessageDialog(fr, "Thanks for using EIMS", "Logout", JOptionPane.INFORMATION_MESSAGE);
 	    	   }
 	       }
