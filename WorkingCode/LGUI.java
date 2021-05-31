@@ -1,253 +1,223 @@
 package Gui;
 import java.awt.*;
-import javax.swing.*;
-import javax.swing.border.Border;
+import java.awt.event.*;
 import java.sql.*;
-import javax.swing.border.EmptyBorder;
-import javax.swing.border.MatteBorder;
-import javax.swing.text.DefaultCaret;
-//import javax.swing.text.DefaultCaret;
-import java.awt.event.ActionListener;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.awt.event.ActionEvent;
-import Gui.EmployeePage1;
-import Gui.Adminpage;
-@SuppressWarnings("unused")
-public class LGUI   {
-   @SuppressWarnings("rawtypes")
-LGUI()
-   {     //frame
-	   JFrame fr=new JFrame("LOGIN");
-	   fr.setSize(1990,890);
-	   fr.setLayout(null);
-       fr.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	   fr.setVisible(true);
-//	   fr.pack();
-	   //  fr.setResizable(true);
+import javax.swing.border.*;
+import javax.swing.*;
+import Gui.Emp;
+import Gui.Adm;
+public class Log {
 	
-	   
-	   // font 
-	   Font f = new Font("Serif",Font.BOLD,60);
-	   Font f1 = new Font("Serif",Font.BOLD,18);
-	   Font f2 = new Font("Serif",Font.BOLD,21);
-	   // header
-	   JPanel heading = new JPanel();
-	   heading.setLayout(null);
-	   heading.setBackground(new Color(0,0,0,90));
-	   heading.setBounds(0,0,1990,100);
-	  
-	 
-	   // Heading text
-	   ImageIcon bg_image1 = new ImageIcon(this.getClass().getResource("/mainlogo.png"));
-	   Image img1 =bg_image1.getImage();
-	   Image temp_img1=img1.getScaledInstance(90,80,Image.SCALE_SMOOTH);
-	   bg_image1=new ImageIcon(temp_img1);
-	  
-	     JLabel name = new JLabel("Employee Information Mangement system",bg_image1,JLabel.CENTER);
-	     name.setLayout(null);
-	     name.setBounds(10,10,1500,80);
-	     heading.add(name);
-	     name.setFont(f);
-	     name.setForeground(Color.WHITE);
-	  
-	 
-	   // login panel
-	   JPanel login = new JPanel();
-	   login.setLayout(null);
-	   login.setBackground(Color.LIGHT_GRAY);
-	   login.setBounds(520,200,500,350);
-	   login.setBorder(new MatteBorder(2,2,2,2,new Color(115,115,165)));
-
-	   
-	   // username
-	   JLabel us= new JLabel("Enter User ID");
-	   us.setBounds(100, 35, 150, 15);
-	   us.setFont(f1);
-	   us.setBorder(null);
-	   us.setForeground(Color.black);
-	   
-	   JTextField username = new JTextField();
-	   username.setBounds(100, 50, 300, 50);
-	   username.setBorder(new MatteBorder(0,0,2,0,Color.red));
-	   username.setBackground(Color.LIGHT_GRAY);
-	   //username.setForeground(new Color(0,0,0,80));
-	   username.setFont(f2);
-	  
-	   login.add(us);
-	   login.add(username);
-	   
-	   
-	   //password
-	   JLabel up= new JLabel("Enter Password");
-	   up.setBounds(100,135,150,15);
-	   up.setFont(f1);
-	   up.setBorder(null);
-	   up.setForeground(Color.black);
-	   
-	   JPasswordField password = new JPasswordField("");
-	   password.setBounds(100,150,300,50);
-	   password.setBorder(new MatteBorder(0,0,2,0,Color.red));
-	   password.setBackground(Color.LIGHT_GRAY);
-	   password.setFont(f2);
-	   login.add(password);
-	   login.add(up);
-	   password.setEchoChar('*');
-	   
-	   // box for selecting the admin and the employee
-	   String user[]= {"admin","employee"};
-	   @SuppressWarnings("unchecked")
-	JComboBox cb= new JComboBox(user);
-	   cb.setBounds(100, 210, 100, 30);
-	   cb.setBackground(Color.LIGHT_GRAY);
-	  // cb.setBorder(new MatteBorder(0,0,2,0,Color.red));
-	   login.add(cb);
-	   
-	    //Check box for showing the password
-	   JCheckBox Cbox= new JCheckBox("Show Password");
-	   Cbox.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+	 Log() {
+		EventQueue.invokeLater(new Runnable(){			
+		public void run() {
+			//frame
+			JFrame frame =new JFrame("Employee Management System");
 			
-				if(Cbox.isSelected())
+			//font
+			Font f1=new Font("Serif",Font.BOLD,30);
+			Font f2=new Font("Serif",Font.BOLD,20);
+			Font f3=new Font("Serif",Font.BOLD,15);
 			
-				password.setEchoChar((char)0);
+			//Border
+			Border b1= BorderFactory.createLineBorder(new Color(115,115,165),2);
+			Border b2= BorderFactory.createLineBorder(Color.BLACK,2);
 			
-			   else
 			
-				password.setEchoChar('*');
+			   // Heading text
+			   ImageIcon bg_image2 = new ImageIcon(this.getClass().getResource("/mainlogo.png"));
+			   Image img2 =bg_image2.getImage();
+			   Image temp_img1=img2.getScaledInstance(90,80,Image.SCALE_SMOOTH);
+			   bg_image2=new ImageIcon(temp_img1);
 			
-		}
-		});
-	   Cbox.setLayout(null);
-	   Cbox.setBounds(340,210,130,30);
-	   Cbox.setOpaque(false);
-	   Cbox.setBackground(Color.WHITE);
-	   login.add(Cbox);
-	   
-	  
-	   
-	   JButton signin = new JButton("Sign In");
-	   signin.setLayout(null);
-	   signin.setBounds(100,250,300,40);
-	   signin.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-	   signin.setFont(f1);
-	   signin.setBackground(new Color(115, 115, 165));
-	   signin.setBorder(new RoundedBorder(15));
-	   login.add(signin);
-		signin.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				   if(cb.getSelectedItem()=="admin")
-					{
-				try 
-				{
-					String uname=username.getText();
-					String pass=new String(password.getPassword());
-				  Class.forName("com.mysql.cj.jdbc.Driver");
-				  Connection conn=DriverManager.getConnection("jdbc:mysql://localhost:3306/admindb?serverTimezone=UTC","root","");
-				  PreparedStatement q=conn.prepareStatement("select * from admindetails where username=? and password=?");
-				  q.setString(1, uname);
-				  q.setString(2, pass);
-				  ResultSet r=q.executeQuery();
-				  if(r.next())
-				  {
-					  System.out.println("Login Successfull.");
-					  fr.setVisible(false);
-					  Adminpage.createAdminFrame();
-					  
-				  }
-				
-				  else
-				  {
-					  System.out.println("Login Unsuccessfull.");
-					  JOptionPane.showMessageDialog(fr, "UserID or password wrong", "Message", JOptionPane.INFORMATION_MESSAGE);
-				  }
-				}
-				catch(Exception e)
-				{
-					System.out.println(e);
-				}	
+			//label
+			JLabel head=new JLabel("Employee Information Management System",bg_image2,JLabel.CENTER);
+			head.setBounds(-10,0,1540,90);
+			head.setFont(new Font("Serif" ,Font.BOLD,50));
+			head.setOpaque(true);
+			head.setBackground((new Color(0,0,0,90)));
+			head.setForeground(Color.white);
+			head.setHorizontalAlignment(JLabel.CENTER);
+			head.setBorder(b1);
+			head.setLayout(null);
+			
+			//login panel
+			JPanel login=new JPanel();
+			login.setBounds(520,200,500,350);
+			login.setOpaque(false);
+			login.setBackground(new Color(179, 204, 255));
+			login.setLayout(null);
+			
+			//user id
+			JLabel user1=new JLabel("User ID");
+			user1.setBounds(100, 35, 150, 15);
+			user1.setFont(f2);
+			user1.setOpaque(false);
+			user1.setLayout(null);
+			
+			JTextField user=new JTextField("");
+			user.setBounds(100, 50, 300, 50);
+			user.setFont(f2);
+			user.setOpaque(false);
+			user.setBackground(new Color(179, 204, 255));
+			user.setBorder(new MatteBorder (0,0,3,0,Color.BLACK));
+			user.setLayout(null);
+			
+			//password
+			JLabel pass1=new JLabel("Password");
+			pass1.setBounds(100,135,150,15);
+			pass1.setOpaque(false);
+			pass1.setFont(f2);
+			pass1.setLayout(null);
+			
+			JPasswordField pass=new JPasswordField("");
+			pass.setBounds(100,150,300,50);
+			pass.setFont(f2);
+			pass.setOpaque(false);
+			pass.setBackground(new Color(179, 204, 255));
+			pass.setBorder(new MatteBorder (0,0,3,0,Color.BLACK));
+			pass.setEchoChar('*');
+			pass.setLayout(null);
+			
+			//show/hide password
+			JCheckBox check=new JCheckBox("Show Password");
+			check.setBounds(315,210,130,30);
+			check.setBackground(new Color(179, 204, 255));
+			check.setOpaque(false);
+			
+			check.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					if(check.isSelected()) {
+						pass.setEchoChar((char)0);
 					}
-				   else
-				   {
-					   try 
-						{
-						  String uname=username.getText();
-						  String upass=new String(password.getPassword());
-						  Class.forName("com.mysql.cj.jdbc.Driver");
-						  Connection conn=DriverManager.getConnection("jdbc:mysql://localhost:3306/admindb?serverTimezone=UTC","root","");
-						  PreparedStatement q=conn.prepareStatement("select * from employeedetails where empid=? and epassword=?");
-						  q.setString(1, uname);
-						  q.setString(2, upass);
-						  ResultSet r=q.executeQuery();
-						  if(r.next())
-						  {
-							  
-							  System.out.println("Login Successfull.");
-							  fr.setVisible(false);
-							  EmployeePage1.createEmpFrame(uname,upass);
-							  
-						  }
+					else {
+						pass.setEchoChar('*');
+					}
+				}
+			});
+			
+			//combo box having admin and employee
+			String role[]= {"Admin","Employee"};
+			JComboBox<String> cb=new JComboBox<>(role);
+			cb.setBounds(100, 210, 100, 30);
+			cb.setOpaque(false);
+			
+			//signin
+			JButton signin=new JButton("Sign In");
+			signin.setBounds(100,250,300,40);
+			signin.setBackground(new Color(179, 204, 255));
+			signin.setFont(f2);
+			signin.setOpaque(false);
+			signin.setBorder(b2);
+			signin.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+			signin.setLayout(null);
+			
+			signin.addMouseListener(new MouseAdapter() {
+				Color color=signin.getBackground();
+				public void mouseEntered(MouseEvent me) {
+					signin.setBackground(Color.WHITE);
+				}
+				public void mouseExited(MouseEvent me) {
+					signin.setBackground(color);
+				}
+			});
+			
+			
+			//admin and employee page
+			signin.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					if(cb.getSelectedItem()=="Admin") {
+						try {
+							String userid=user.getText();
+							String userpass=new String(pass.getPassword());
 						
-						  else
-						  {
-							  System.out.println("Login Unsucessful");
-						  JOptionPane.showMessageDialog(fr, "UserID or password wrong", "Message", JOptionPane.INFORMATION_MESSAGE);
-						  }
+							Class.forName("com.mysql.cj.jdbc.Driver");
+							Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/admindb?serverTimezone=UTC","root","");
+							PreparedStatement q=con.prepareStatement("select * from admindetails where username=?  and password=?");
+							q.setString(1, userid);
+							q.setString(2, userpass);
+							ResultSet r=q.executeQuery();
+							if(r.next()) {
+								System.out.println("Login Successful.");
+								frame.setVisible(false);
+								Adm.createAdminFrame();
+							}
+							else
+							{
+								System.out.println("Login Unsuccessful.");
+								JOptionPane.showMessageDialog(frame, "Wrong User ID or Password", "Warning", JOptionPane.WARNING_MESSAGE);
+								user.setText("");
+								pass.setText("");
+							}
 						}
-						catch(Exception e)
+						catch(Exception se)
 						{
-							System.out.println(e);
+							System.out.println(se);
 						}
-				   }
-			  }
-		
-		 });
-		
-		
-		
-	   
-	// background Image.
-	   ImageIcon bg_image = new ImageIcon(this.getClass().getResource("/bg1.jpg"));
-	   Image img =bg_image.getImage();
-	   Image temp_img=img.getScaledInstance(1990,890,Image.SCALE_SMOOTH);
-	   bg_image=new ImageIcon(temp_img);
-	   JLabel background= new JLabel("",bg_image,JLabel.CENTER);
-	   
-	    background.add(heading);
-	    background.add(login);
-	    background.setBounds(0,0,1990,890);
-	    fr.add(background);
-	   
-	   
-   }
+					}
+					else if(cb.getSelectedItem()=="Employee") {
+						try {
+							String userid=user.getText();
+							String userpass=new String(pass.getPassword());
+							
+							Class.forName("com.mysql.cj.jdbc.Driver");
+							Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/admindb?serverTimezone=UTC","root","");
+							PreparedStatement q=con.prepareStatement("select * from employeedetails where empid=? and epassword=?");
+							q.setString(1, userid);
+							q.setString(2, userpass);
+							ResultSet r=q.executeQuery();
+							if(r.next()) {
+								System.out.println("Login Successful.");
+								frame.setVisible(false);
+								Emp.createEmpFrame(userid,userpass);
+							}
+							else{
+								System.out.println("Login Unsuccessful.");
+								JOptionPane.showMessageDialog(frame, "Wrong User ID or Password", "Warning", JOptionPane.WARNING_MESSAGE);
+								user.setText("");
+								pass.setText("");
+							}
+						}
+						catch(Exception se)
+						{
+							System.out.println(se);
+						}
+					}
+					
+				}});
+			
+			
+			login.add(user1);
+			login.add(user);
+			login.add(pass1);
+			login.add(pass);
+			login.add(check);
+			login.add(cb);
+			login.add(signin);
+			
+			// frame background image
+			ImageIcon png=new ImageIcon(this.getClass().getResource("/bg1.jpg"));
+			Image img= png.getImage();
+			Image img1=img.getScaledInstance(1980,890,Image.SCALE_SMOOTH);
+			png=new ImageIcon(img1);
+			JLabel logo=new JLabel("",png,JLabel.CENTER);
+			logo.setBounds(-10,0,1980,890);
+			logo.setLayout(null);
+			
+			
+			frame.add(login);
+			frame.add(head);
+			frame.add(logo);
+			
+			frame.setBounds(-10,0,1980,890);
+			frame.setLayout(null);
+			frame.setVisible(true);
+			   frame.setResizable(false);
+			frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-  private static class RoundedBorder implements Border {
-
-	    private int radius;
-
-
-	    RoundedBorder(int radius) {
-	        this.radius = radius;
-	    }
-
-
-	    public Insets getBorderInsets(Component c) {
-	        return new Insets(this.radius+1, this.radius+1, this.radius+2, this.radius);
-	    }
-
-
-	    public boolean isBorderOpaque() {
-	        return true;
-	    }
-
-
-	    public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) {
-	        g.drawRoundRect(x, y, width-1, height-1, radius, radius);
-	    }
+		}});}
+	public static void main(String[] args) {
+		new Log();
 	}
-  public static void main(String args[]) 
-  {    
-	new LGUI();
-  }
+	
 }
-
