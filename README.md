@@ -1,6 +1,6 @@
 # Employee-Management-System-in-Java
 This desktop application is written in Java and has a Swing and AWT-based GUI.
-We can manage all of an employee's necessary information in any firm with this software. This application allows employees and adminstrators to communicate with each other.
+We can manage all of an employee's necessary information in any firm with this software. This application allows employees and administrators to communicate with each other.
 ------------FROM THE ADMIN ASPECT, THE KEY HIGHLIGHTS OF THIS SOFTWARE----------
 1. Sign In Authentication
 2. Tab for Employee Data
